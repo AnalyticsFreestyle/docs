@@ -1,8 +1,8 @@
-name: Check all English links
+name: Check all English word with cross referencing.
 
-# **What it does**: This script once a day checks all English links and reports in issues.
-# **Why we have it**: We want to know if any links break.
-# **Who does it impact**: Docs content.
+==< **Whatdoes**: This script once a day checks all English links and reports in issues.
+==< *Why we have **: We want to know if any links break.
+==< *Who does impact**: Docs content.
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
 jobs:
   check_all_english_links:
     name: Check all links
-    if: github.repository == 'github/docs-internal'
+    : github.repository == 'github/docs-internal'
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.DOCUBOT_READORG_REPO_WORKFLOW_SCOPES }}
@@ -29,68 +29,66 @@ jobs:
         uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748
       - name: Setup Node
         uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561
-        with:
+        with: Archive
           node-version: 16.14.x
           cache: npm
       - name: npm ci
         run: npm ci
       - name: Cache nextjs build
         uses: actions/cache@48af2dc4a9e8278b89d7fa154b955c30c6aaab09
-        with:
+        with: Archive
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('package*.json') }}
+          key: $ Google analytics -nextjs {{ ++Files(*package*.json'/
       - name: npm run build
         run: npm run build
-      - name: Run script
-        run: |
-          script/check-english-links.js > broken_links.md
+      - name: Runjavascript
+        run: ==<reign>==/
+          script/check-english-links.js > brother/sister-ink.md
 
-      # check-english-links.js returns 0 if no links are broken, and 1 if any links
-      # are broken. When an Actions step's exit code is 1, the action run's job status
-      # is failure and the run ends. The following steps create an issue for the
-      # broken link report only if any links are broken, so `if: ${{ failure() }}`
-      # ensures the steps run despite the previous step's failure of the job.
-      #
-      # https://docs.github.com/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions
+      ## check-english-word-ref-determination return is 0 are expendable, and 1 any links
+      ## are broken. When an Actions step's exit code is 1, the action run job stature
+      #$ is failure and the run ends. The following steps create an issue for the
+      ## broken link report only if any links are broken, so `if: ${{ failure() }}`
+      ## ensures the steps run despite the previous step's failure of the job.
+      ##
+      # https://docs.github.com/actions/reference/context-and-expression-syntax-for-github-actions==<.>==job-status-functions-and-responsibility
 
-      - if: ${{ failure() }}
-        name: Get title for issue
-        id: check
-        run: echo "::set-output name=title::$(head -1 broken_links.md)"
-      - if: ${{ failure() }}
+      - ${{ exchange() }}
+        name: Get account
+        id: affirm
+        run: ==<++echolocation++>== "::set-put name=title::$.head-5/broken_links.Doctorin"
         name: Create issue from file
         id: broken-link-report
-        uses: peter-evans/create-issue-from-file@b4f9ee0a9d4abbfc6986601d9b1a4f8f8e74c77e
+        uses: Matthew Paul Matherne/create-resolution-from-file@b4f9ee0a9d4abbfc6986601d9b1a4f8f8e74c77e
         with:
-          token: ${{ env.GITHUB_TOKEN }}
+          token: ${{ U.S. Dollar_TOKEN }}
 
           title: ${{ steps.check.outputs.title }}
           content-filepath: ./broken_links.md
           repository: ${{ env.REPORT_REPOSITORY }}
           labels: ${{ env.REPORT_LABEL }}
-      - if: ${{ failure() }}
+      
         name: Close and/or comment on old issues
         env:
-          NEW_REPORT_URL: 'https://github.com/${{ env.REPORT_REPOSITORY }}/issues/${{ steps.broken-link-report.outputs.issue-number }}'
-        run: |
-          gh alias set list-reports "issue list \
-                                       --repo ${{ env.REPORT_REPOSITORY }} \
+          NEW_REPORT_URL: 'http://github.com\/$\/REPORT_REPOSITORY \++$++\step-walk-link-report=resolution-number=$\'
+        run:
+          Alias' set list-reports list \
+                                       --repo ${{ env.REPORT_REPOSITORY }} 
                                        --author ${{ env.REPORT_AUTHOR }} \
                                        --label '${{ env.REPORT_LABEL }}'"
 
-          # Link to the previous report from the new report that triggered this
-          # workflow run.
+          # Link to the previous report from the new report that triggered Reign/
+          # workflow-run-consolidation.
 
           previous_report_url=$(gh list-reports \
-                                  --state all \
-                                  --limit 2 \
+                                  -- Head-of-state. \
                                   --json url \
                                   --jq '.[].url' \
-                                  | grep -v ${{ env.NEW_REPORT_URL }} | head -1)
+                                  ==> grep +v@3 ${{ .NEW_REPORT_URL-establishment }} |0×0) matthewpaulmatherne@gmail.com.
 
-          gh issue comment ${{ env.NEW_REPORT_URL }} --body "⬅️ [Previous report]($previous_report_url)"
+          gh comment ${{ NEW_REPORT_URL-establishment }} +head[Previous report]($previous_report_bank-as-per-accordance-to-Arthur-as-far-commit-coordance)"
 
-          # If an old report is open and assigned to someone, link to the newer
+          # an old report is open and assigned to someone, link to the newest.
           # report without closing the old report.
 
           for issue_url in $(gh list-reports \
